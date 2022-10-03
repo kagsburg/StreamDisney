@@ -1,28 +1,24 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectRecommend } from "../features/movie/movieSlice";
 
 const Recommend = (props) => {
+    const movies = useSelector(selectRecommend);
+
     return (
         <Container>
             <h4>Recommended For you</h4>
             <Content>
-                <Wrap>
-                    <Link to="/detail/123">
-                    <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/5C647DF3FFBFA343CFEA84AC715148F25F9E86F398B408010CC403E7654FB908/scale?width=1440&aspectRatio=1.78" />
-                    </Link>
-                </Wrap>
-                <Wrap>
-                    <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/50B933E83609BEEFEDFA177A6D96DBFA7804C14F70A0B5AB314E892E65498ACF/scale?width=1440&aspectRatio=1.78" />
-                </Wrap>
-                <Wrap>
-                    <img src="/images/viewers-marvel.png" />
-                </Wrap>
-                <Wrap>
-                    <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/D7AEE1F05D10FC37C873176AAA26F777FC1B71E7A6563F36C6B1B497CAB1CEC2/scale?width=1440&aspectRatio=1.78" />
-                </Wrap>
-                <Wrap>
-                    <img src="/images/viewers-national.png" />
-                </Wrap>
+                {movies &&
+                    movies.map((movie, key) => (
+                        <Wrap key={key}>
+                            {movie.id}
+                            <Link to={`/detail/${movie.id}`}>
+                                <img src={movie.cardImg} alt={movie.title} />
+                            </Link>
+                        </Wrap>
+                    ))}
             </Content>
         </Container>
     )

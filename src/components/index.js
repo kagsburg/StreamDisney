@@ -10,3 +10,4 @@ export { default as Trending} from './Trending';
 export { default as Originals} from './Originals';
 export { default as New} from './New';
 export { default as Recommend} from './Recommend';
+export { default as Detail} from './Detail';
